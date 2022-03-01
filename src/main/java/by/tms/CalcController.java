@@ -1,6 +1,7 @@
 package by.tms;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,22 @@ public class CalcController {
     }
 
     @PostMapping
-    public String resl(Calc calc) {
-        return "redirect:/calc";
+    public String result(Calc calc, Model model) {
+        double resultValue = 0;
+        if (calc.getOperation().equals("sum")) {
+            resultValue = calc.getValue1() + calc.getValue2();
+        } else if (calc.getOperation().equals("dif")) {
+            resultValue = calc.getValue1() - calc.getValue2();
+        } else if (calc.getOperation().equals("div")) {
+            resultValue = calc.getValue1() / calc.getValue2();
+        } else if (calc.getOperation().equals("mult")) {
+            resultValue = calc.getValue1() * calc.getValue2();
+        } else {
+            System.out.println("not support operation");
+        }
+
+        model.addAttribute("result", resultValue);
+
+        return "calc";
     }
 }

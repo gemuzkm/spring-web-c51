@@ -17,6 +17,6 @@ public class UserController {
 
 	@PostMapping("/reg")
 	public String reg(User user){
-		return "redirect:/test";
+		return "redirect:test";
 	}
 }

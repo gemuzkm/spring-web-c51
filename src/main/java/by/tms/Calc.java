@@ -1,29 +1,29 @@
 package by.tms;
 
 public class Calc {
-    private int value1;
-    private int value2;
+    private double value1;
+    private double value2;
     private String operation;
 
-    public Calc(int value1, int value2, String operaton) {
+    public Calc(double value1, double value2, String operation) {
         this.value1 = value1;
         this.value2 = value2;
-        this.operation = operaton;
+        this.operation = operation;
     }
 
-    public int getValue1() {
+    public double getValue1() {
         return value1;
     }
 
-    public void setValue1(int value1) {
+    public void setValue1(double value1) {
         this.value1 = value1;
     }
 
-    public int getValue2() {
+    public double getValue2() {
         return value2;
     }
 
-    public void setValue2(int value2) {
+    public void setValue2(double value2) {
         this.value2 = value2;
     }
 
@@ -40,7 +40,7 @@ public class Calc {
         return "Calc{" +
                 "value1=" + value1 +
                 ", value2=" + value2 +
-                ", operaton='" + operation + '\'' +
+                ", operation='" + operation + '\'' +
                 '}';
     }
 }

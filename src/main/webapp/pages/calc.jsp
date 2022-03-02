@@ -14,9 +14,15 @@
 </head>
 <body>
 <form action="/calc" method="post">
-    <input type="text" name="value1" placeholder="Value 1"><br>
-    <input type="text" name="operation" placeholder="Operation"><br>
-    <input type="text" name="value2" placeholder="Value 2"><br>
+    <input type="text" name="value1" placeholder="Value 1">
+
+    <select name="operation">
+        <option disabled selected >Select operation</option>
+        <option value="sum">+</option>
+        <option value="dif">-</option>
+        <option value="mult">*</option>
+        <option value="div">/</option>
+    <input type="text" name="value2" placeholder="Value 2">
     <button>Result</button>
     ${result}
 </form>

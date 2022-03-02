@@ -18,7 +18,10 @@ public class CalcController {
     @PostMapping
     public String result(Calc calc, Model model) {
         double resultValue = 0;
-        if (calc.getOperation().equals("sum")) {
+
+        if (calc == null) {
+            model.addAttribute("result", "no operation selected");
+        } else if (calc.getOperation().equals("sum")) {
             resultValue = calc.getValue1() + calc.getValue2();
         } else if (calc.getOperation().equals("dif")) {
             resultValue = calc.getValue1() - calc.getValue2();
@@ -27,10 +30,10 @@ public class CalcController {
         } else if (calc.getOperation().equals("mult")) {
             resultValue = calc.getValue1() * calc.getValue2();
         } else {
-            System.out.println("not support operation");
+            model.addAttribute("result", "not support operation");
         }
 
-        model.addAttribute("result", resultValue);
+        model.addAttribute("result", String.valueOf(resultValue));
 
         return "calc";
     }

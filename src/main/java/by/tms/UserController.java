@@ -34,6 +34,7 @@ public class UserController {
 //				map.put(fieldError.getField(), fieldError.getDefaultMessage());
 			}
 //		model.addAllAttributes(map);
+            return "reg";
 		}
 
 		System.out.println(bindingResult.hasErrors());

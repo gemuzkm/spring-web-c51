@@ -4,10 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.naming.Binding;
 import javax.validation.Valid;
@@ -19,14 +16,14 @@ import java.util.Map;
 public class UserController {
 
     @GetMapping("/reg")
-    public String reg() {
+    public String reg(@ModelAttribute("newUser") User user, Model model) {
         return "reg";
     }
 
     @PostMapping("/reg")
 	// результат должен быть после валидируемой модели
 
-    public String reg(@Valid User user, BindingResult bindingResult, Model model) {
+    public String reg(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasGlobalErrors()) {
 //			Map<String, String> map = new HashMap<>();
 			for (FieldError fieldError: bindingResult.getFieldErrors()) {

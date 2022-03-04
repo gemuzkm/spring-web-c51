@@ -13,7 +13,9 @@
 <body>
 <form action="/user/reg" method="post">
 	<input type="text" name="name" placeholder="Name">
+	<p>${name}</p>
 	<input type="text" name="password" placeholder="Password">
+	<p>${password}</p>
 	<button>Submit</button>
 </form>
 </body>

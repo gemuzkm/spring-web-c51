@@ -16,24 +16,24 @@ public class CalcController {
     }
 
     @PostMapping
-    public String result(Calc calc, Model model) {
+    public String result(Operation operation, Model model) {
         double resultValue = 0;
 
-        if (calc == null) {
+        if (operation == null) {
             model.addAttribute("result", "no operation selected");
-        } else if (calc.getOperation().equals("sum")) {
-            resultValue = calc.getValue1() + calc.getValue2();
-        } else if (calc.getOperation().equals("dif")) {
-            resultValue = calc.getValue1() - calc.getValue2();
-        } else if (calc.getOperation().equals("div")) {
-            resultValue = calc.getValue1() / calc.getValue2();
-        } else if (calc.getOperation().equals("mult")) {
-            resultValue = calc.getValue1() * calc.getValue2();
+        } else if (operation.getOperation().equals("sum")) {
+            resultValue = operation.getValue1() + operation.getValue2();
+        } else if (operation.getOperation().equals("dif")) {
+            resultValue = operation.getValue1() - operation.getValue2();
+        } else if (operation.getOperation().equals("div")) {
+            resultValue = operation.getValue1() / operation.getValue2();
+        } else if (operation.getOperation().equals("mult")) {
+            resultValue = operation.getValue1() * operation.getValue2();
         } else {
-            model.addAttribute("result", "not support operation");
+            model.addAttribute("msgResult", "not support operation");
         }
 
-        model.addAttribute("result", String.valueOf(resultValue));
+        model.addAttribute("msgResult", String.valueOf(resultValue));
 
         return "calc";
     }

@@ -1,11 +1,11 @@
 package by.tms;
 
-public class Calc {
+public class Operation {
     private double value1;
     private double value2;
     private String operation;
 
-    public Calc(double value1, double value2, String operation) {
+    public Operation(double value1, double value2, String operation) {
         this.value1 = value1;
         this.value2 = value2;
         this.operation = operation;
@@ -37,7 +37,7 @@ public class Calc {
 
     @Override
     public String toString() {
-        return "Calc{" +
+        return "Operation{" +
                 "value1=" + value1 +
                 ", value2=" + value2 +
                 ", operation='" + operation + '\'' +

@@ -13,7 +13,7 @@
     <title>Calculator page</title>
 </head>
 <body>
-<form action="/calc" method="post">
+<form action="/operation" method="post">
     <input type="text" name="value1" placeholder="Value 1">
 
     <select name="operation">
@@ -24,7 +24,7 @@
         <option value="div">/</option>
     <input type="text" name="value2" placeholder="Value 2">
     <button>Result</button>
-    ${result}
+    ${msgResult}
 </form>
 
 </body>

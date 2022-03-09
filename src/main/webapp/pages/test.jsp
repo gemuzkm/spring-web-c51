@@ -11,6 +11,6 @@
 	<title>Title</title>
 </head>
 <body>
-<p>Hello ${myName}, ${myAge}</p>
+<p>Hello ${myName}, ${myPassword}</p>
 </body>
 </html>

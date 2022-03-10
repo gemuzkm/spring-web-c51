@@ -13,7 +13,7 @@
     <title>Calculator page</title>
 </head>
 <body>
-<form action="/operation" method="post">
+<form action="/calc" method="post">
     <input type="text" name="value1" placeholder="Value 1">
 
     <select name="operation">

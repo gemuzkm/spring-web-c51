@@ -33,6 +33,10 @@ public class UserController {
 		}
 
 		System.out.println(bindingResult.hasErrors());
-        return "redirect:test";
+        model.addAttribute("myName", user.getName());
+        model.addAttribute("myPassword", user.getPassword());
+
+
+        return "test";
     }
 }

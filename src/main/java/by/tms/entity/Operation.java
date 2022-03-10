@@ -1,4 +1,4 @@
-package by.tms;
+package by.tms.entity;
 
 public class Operation {
     private double value1;

@@ -18,7 +18,7 @@
 	<s:input path="name" placeholder="Name"/>
 	<s:errors path="name"/>
 
-	<s:input path="password" placeholder="Password"/>
+	<s:input path="password" showPassword="false" placeholder="Password"/>
 	<s:errors path="password"/>
 
 	<s:button>Submit</s:button>

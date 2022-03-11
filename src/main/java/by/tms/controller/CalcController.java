@@ -4,6 +4,7 @@ import by.tms.entity.Operation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CalcController {
 
     @GetMapping
-    public String calc() {
+    public String calc(@ModelAttribute("calcOperation") Operation operation) {
         return "calc";
     }
 
     @PostMapping
-    public String result(Operation operation, Model model) {
+    public String result(@ModelAttribute("calcOperation")  Operation operation, Model model) {
         double resultValue = 0;
         String inputOperation = operation.getOperation();
 

@@ -21,10 +21,10 @@
 
     <s:select path="operation">
         <option disabled selected>Select operation</option>
-        <option value="sum">+</option>
-        <option value="dif">-</option>
-        <option value="mult">*</option>
-        <option value="div">/</option>
+        <option value="SUM">+</option>
+        <option value="SUBTRACT">-</option>
+        <option value="MULTIPLY">*</option>
+        <option value="DIVIDE">/</option>
     </s:select>
     <s:errors path="operation"/>
     <br>

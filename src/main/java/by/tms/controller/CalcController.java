@@ -1,6 +1,9 @@
 package by.tms.controller;
 
 import by.tms.entity.Operation;
+import by.tms.service.СalculatorService;
+import com.sun.jdi.InvalidLineNumberException;
+import org.apache.taglibs.standard.lang.jstl.NotOperator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,40 +40,7 @@ public class CalcController {
             return "calc";
         }
 
-        double resultValue = 0;
-        String inputOperation = operation.getOperation();
-
-        switch (inputOperation) {
-            case "sum":
-                resultValue = operation.getValue1() + operation.getValue2();
-                break;
-            case "dif":
-                resultValue = operation.getValue1() - operation.getValue2();
-                break;
-            case "div":
-                resultValue = operation.getValue1() / operation.getValue2();
-                break;
-            case "mult":
-                resultValue = operation.getValue1() * operation.getValue2();
-                break;
-            default:
-                model.addAttribute("msgResult", "not support operation");
-        }
-
-//        if (operation == null) {
-//            model.addAttribute("result", "no operation selected");
-//        } else if (operation.getOperation().equals("sum")) {
-//            resultValue = operation.getValue1() + operation.getValue2();
-//        } else if (operation.getOperation().equals("dif")) {
-//            resultValue = operation.getValue1() - operation.getValue2();
-//        } else if (operation.getOperation().equals("div")) {
-//            resultValue = operation.getValue1() / operation.getValue2();
-//        } else if (operation.getOperation().equals("mult")) {
-//            resultValue = operation.getValue1() * operation.getValue2();
-//        } else {
-//            model.addAttribute("msgResult", "not support operation");
-//        }
-
+        Double resultValue = СalculatorService.getResult(operation);
         model.addAttribute("msgResult", String.valueOf(resultValue));
 
         return "calc";

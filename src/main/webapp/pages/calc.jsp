@@ -16,6 +16,9 @@
 <body>
 <s:form action="/calc" method="post" modelAttribute="calcOperation">
     <s:input path="value1" placeholder="Value 1" />
+    <s:errors path="value1"/>
+    <br>
+
     <s:select path="operation">
         <option disabled selected>Select operation</option>
         <option value="sum">+</option>
@@ -23,7 +26,13 @@
         <option value="mult">*</option>
         <option value="div">/</option>
     </s:select>
+    <s:errors path="operation"/>
+    <br>
+
     <s:input path="value2" placeholder="Value 2"/>
+    <s:errors path="value2"/>
+    <br>
+
     <s:button>Result </s:button> ${msgResult}
 </s:form>
 </body>

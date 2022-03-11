@@ -1,8 +1,15 @@
 package by.tms.entity;
 
+import javax.validation.constraints.NotNull;
+
 public class Operation {
+    @NotNull(message = "invalid value1")
     private Double value1;
+
+    @NotNull(message = "invalid value2")
     private Double value2;
+
+    @NotNull(message = "No operator is supported")
     private String operation;
 
     public Operation(Double value1, Double value2, String operation) {

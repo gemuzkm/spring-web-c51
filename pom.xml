@@ -17,38 +17,50 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+    <spring-webmvc.version>5.3.15</spring-webmvc.version>
+    <junit.version>4.11</junit.version>
+    <jstl.version>1.2</jstl.version>
+    <hibernate-validator.version>5.4.3.Final</hibernate-validator.version>
+    <thymeleaf-spring5.version>3.1.0.M1</thymeleaf-spring5.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
+      <version>${javax.servlet-api.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>5.3.15</version>
+      <version>${spring-webmvc.version}</version>
     </dependency>
 
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>jstl</groupId>
       <artifactId>jstl</artifactId>
-      <version>1.2</version>
+      <version>${jstl.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <version>5.4.3.Final</version>
+      <version>${hibernate-validator.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf-spring5</artifactId>
+      <version>${thymeleaf-spring5.version}</version>
     </dependency>
 
   </dependencies>

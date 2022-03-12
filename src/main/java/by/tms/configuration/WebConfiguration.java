@@ -24,50 +24,50 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 public class WebConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
-	@Autowired
-	private TestInterceptor testInterceptor;
+    @Autowired
+    private TestInterceptor testInterceptor;
 
-	private ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
-	@Bean
-	public SpringResourceTemplateResolver templateResolver(){
-		SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-		templateResolver.setApplicationContext(this.applicationContext);
-		templateResolver.setPrefix("/pages/");
-		templateResolver.setSuffix(".html");
-		templateResolver.setTemplateMode(TemplateMode.HTML);
-		templateResolver.setCacheable(false);
-		return templateResolver;
-	}
+    @Bean
+    public SpringResourceTemplateResolver templateResolver() {
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setApplicationContext(this.applicationContext);
+        templateResolver.setPrefix("/pages/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCacheable(false);
+        return templateResolver;
+    }
 
-	@Bean
-	public SpringTemplateEngine templateEngine(){
-		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-		templateEngine.setTemplateResolver(templateResolver());
-		templateEngine.setEnableSpringELCompiler(true);
-		return templateEngine;
-	}
+    @Bean
+    public SpringTemplateEngine templateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.setEnableSpringELCompiler(true);
+        return templateEngine;
+    }
 
-	@Bean
-	public ThymeleafViewResolver viewResolver(){
-		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-		viewResolver.setTemplateEngine(templateEngine());
-		return viewResolver;
-	}
+    @Bean
+    public ThymeleafViewResolver viewResolver() {
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine());
+        return viewResolver;
+    }
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(testInterceptor)
-				.addPathPatterns("/user/**").order(2);
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(testInterceptor)
+                .addPathPatterns("/user/**").order(2);
 //		registry.addInterceptor(testInterceptor)
 //				.addPathPatterns("/user/**").order(1);
 //				.excludePathPatterns("/user/reg");
-	}
+    }
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 
-	}
+    }
 
 //	@Bean
 //	public ViewResolver viewResolver(){

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -13,9 +14,15 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
 
+//    @GetMapping("/reg")
+//    public String reg(@ModelAttribute("newUser") User user, Model model) {
+//        return "reg";
+//    }
+
     @GetMapping("/reg")
-    public String reg(@ModelAttribute("newUser") User user, Model model) {
-        return "reg";
+    public ModelAndView reg(@ModelAttribute("newUser") User user, ModelAndView modelAndView) {
+        modelAndView.setViewName("reg");
+        return modelAndView;
     }
 
     @PostMapping("/reg")

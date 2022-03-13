@@ -65,12 +65,4 @@ public class WebConfiguration extends WebMvcConfigurerAdapter implements Applica
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 
     }
-
-//	@Bean
-//	public ViewResolver viewResolver(){
-//		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-//		viewResolver.setSuffix(".jsp");
-//		viewResolver.setPrefix("/pages/");
-//		return viewResolver;
-//	}
 }

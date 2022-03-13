@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Calculator Page</title>
@@ -16,7 +16,9 @@
     </select>
     <input type="text" name="value2" placeholder="value2">
     <button>Submit</button>
-    <p>${result}</p>
+   ${result}
+    <th th:text="{{result}}">Type</th>
+
 </form>
 </body>
 </html>

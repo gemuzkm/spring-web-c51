@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class СalculatorService {
 
-    public static Double  getResult(Operation operation) {
+    public static Double getResult(Operation operation) {
         double resultValue = 0;
 
         switch (operation.getOperation()) {

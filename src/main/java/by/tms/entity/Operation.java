@@ -1,5 +1,7 @@
 package by.tms.entity;
 
+import by.tms.enums.EnumOperation;
+
 import javax.validation.constraints.NotNull;
 
 public class Operation {
@@ -11,6 +13,8 @@ public class Operation {
 
     @NotNull(message = "No operator is supported")
     private String operation;
+
+    private EnumOperation enumOperation;
 
     public Operation(Double value1, Double value2, String operation) {
         this.value1 = value1;
@@ -40,6 +44,14 @@ public class Operation {
 
     public void setOperation(String operation) {
         this.operation = operation;
+    }
+
+    public EnumOperation getEnumOperation() {
+        return enumOperation;
+    }
+
+    public void setEnumOperation(EnumOperation enumOperation) {
+        this.enumOperation = enumOperation;
     }
 
     @Override

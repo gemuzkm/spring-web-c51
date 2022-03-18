@@ -10,6 +10,9 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class User {
+
+	private long id;
+
 	@NotBlank(message = "svoe ssobchenie")
 	@NotEmpty
 	private String name;
@@ -18,14 +21,23 @@ public class User {
 	@NotEmpty //"    " false
 //	@Pattern()
 //	@Max(45)
-//	@Range(min = 3, max = 15)
+	@Range(min = 3, max = 50)
 //	@Size()
 //	@Email(regexp = "")
 	private String password;
 
-	public User(String name, String password) {
+	public User(long id, String name, String password) {
+		this.id = id;
 		this.name = name;
 		this.password = password;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -47,7 +59,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User{" +
-				"name='" + name + '\'' +
+				"id=" + id +
+				", name='" + name + '\'' +
 				", password='" + password + '\'' +
 				'}';
 	}

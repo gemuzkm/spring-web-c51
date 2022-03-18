@@ -19,6 +19,16 @@ public class UserController {
 //        return "reg";
 //    }
 
+    @GetMapping()
+    public String index(Model model) {
+        return null;
+    }
+
+    @GetMapping("/{id}")
+    public String show(@PathVariable("id") int id, Model model) {
+        return null;
+    }
+
     @GetMapping("/reg")
     public ModelAndView reg(@ModelAttribute("newUser") User user, ModelAndView modelAndView) {
         modelAndView.setViewName("User/reg");

@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping("/reg")
     public ModelAndView reg(@ModelAttribute("newUser") User user, ModelAndView modelAndView) {
-        modelAndView.setViewName("reg");
+        modelAndView.setViewName("User/reg");
         return modelAndView;
     }
 
@@ -36,7 +36,7 @@ public class UserController {
 //				map.put(fieldError.getField(), fieldError.getDefaultMessage());
 			}
 //		model.addAllAttributes(map);
-            return "reg";
+            return "User/reg";
 		}
 
 		System.out.println(bindingResult.hasErrors());

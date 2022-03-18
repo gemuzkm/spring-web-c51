@@ -2,12 +2,9 @@ package by.tms.controller;
 
 import by.tms.entity.Operation;
 import by.tms.service.СalculatorService;
-import com.sun.jdi.InvalidLineNumberException;
-import org.apache.taglibs.standard.lang.jstl.NotOperator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,11 +14,11 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/calc")
-public class CalcController {
+public class CalculatorController {
 
     @GetMapping
     public String calc(@ModelAttribute("calcOperation") Operation operation) {
-        return "calc";
+        return "Calculator/calc";
     }
 
     @PostMapping
@@ -37,11 +34,11 @@ public class CalcController {
 //        }
 
         if (bindingResult.hasErrors()) {
-            return "calc";
+            return "Calculator/calc";
         }
 
         model.addAttribute("msgResult", СalculatorService.getResult(operation));
 
-        return "calc";
+        return "Calculator/calc";
     }
 }

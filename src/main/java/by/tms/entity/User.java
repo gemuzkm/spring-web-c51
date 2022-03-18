@@ -13,17 +13,13 @@ public class User {
 
 	private long id;
 
-	@NotBlank(message = "svoe ssobchenie")
-	@NotEmpty
+//	@NotBlank(message = "svoe ssobchenie")
+//	@NotEmpty
 	private String name;
 
-	@NotBlank // " " true
-	@NotEmpty //"    " false
-//	@Pattern()
-//	@Max(45)
+//	@NotBlank // " " true
+//	@NotEmpty //"    " false
 	@Range(min = 3, max = 50)
-//	@Size()
-//	@Email(regexp = "")
 	private String password;
 
 	private String email;

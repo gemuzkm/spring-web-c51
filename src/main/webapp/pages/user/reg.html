@@ -5,7 +5,7 @@
     <title>New user</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/user}" th:object="${newUser}">
+<form th:method="POST" th:action="@{/user/reg}" th:object="${newUser}">
     <div>
         <label for="name">Name</label>
         <input type="text" th:field="*{name}" id="name"/>

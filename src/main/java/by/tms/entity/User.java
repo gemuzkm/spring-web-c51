@@ -1,27 +1,25 @@
 package by.tms.entity;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Min;
 
 public class User {
 
 	private long id;
 
-//	@NotBlank(message = "svoe ssobchenie")
-//	@NotEmpty
+
+	@NotEmpty(message = "name empty")
 	private String name;
 
 //	@NotBlank // " " true
 //	@NotEmpty //"    " false
-	@Range(min = 3, max = 50)
+	@NotEmpty(message = "password empty")
 	private String password;
 
+	@NotEmpty(message = "email empty")
 	private String email;
 
 	public User() {

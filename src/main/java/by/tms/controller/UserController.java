@@ -38,8 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/reg")
-    public String newUser(Model model) {
-        model.addAttribute("newUser", new User());
+    public String newUser(@ModelAttribute("newUser") User user) {
         return "user/reg";
     }
 

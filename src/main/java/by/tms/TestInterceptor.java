@@ -9,23 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @Component
 public class TestInterceptor implements HandlerInterceptor {
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (request.getSession().getAttribute("user") != null) {
-            return true;
-        }
- //       response.sendRedirect("/");
-        return false;
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        //		modelAndView.setViewName("error");
-        modelAndView.addObject("name", "Test");
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-
-    }
+//    @Override
+//    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+////        if (request.getSession().getAttribute("user") != null) {
+////            return true;
+////        }
+//// //       response.sendRedirect("/");
+////        return false;
+//        return true;
+//    }
 }

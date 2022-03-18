@@ -1,6 +1,8 @@
 package by.tms.controller;
 
+import by.tms.dao.UserDAO;
 import by.tms.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,46 +16,41 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
 
-//    @GetMapping("/reg")
-//    public String reg(@ModelAttribute("newUser") User user, Model model) {
-//        return "reg";
-//    }
+
+
+    private final UserDAO userDAO;
+
+    @Autowired
+    public UserController(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     @GetMapping()
-    public String index(Model model) {
-        return null;
+    public String showAllUsers(Model model) {
+        model.addAttribute("users", userDAO.getAll());
+        return "user/users";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        return null;
+    public String showById(@PathVariable("id") int id, Model model) {
+        model.addAttribute("user", userDAO.getById(id));
+        return "user/user";
     }
 
-    @GetMapping("/reg")
-    public ModelAndView reg(@ModelAttribute("newUser") User user, ModelAndView modelAndView) {
-        modelAndView.setViewName("User/reg");
-        return modelAndView;
+    @GetMapping("/new")
+    public String newUser(Model model) {
+        model.addAttribute("newUser", new User());
+        return "user/reg";
     }
 
-    @PostMapping("/reg")
-	// результат должен быть после валидируемой модели
+    @PostMapping()
+    public String createUser(@ModelAttribute("newUser") User user, BindingResult bindingResult, Model model) {
 
-    public String reg(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasGlobalErrors()) {
-//			Map<String, String> map = new HashMap<>();
-			for (FieldError fieldError: bindingResult.getFieldErrors()) {
-                model.addAttribute(fieldError.getField(), fieldError.getDefaultMessage());
-//				map.put(fieldError.getField(), fieldError.getDefaultMessage());
-			}
-//		model.addAllAttributes(map);
-            return "User/reg";
-		}
+        if (bindingResult.hasErrors()) {
+            return "user/reg";
+        }
 
-		System.out.println(bindingResult.hasErrors());
-        model.addAttribute("myName", user.getName());
-        model.addAttribute("myPassword", user.getPassword());
-
-
-        return "test";
+        userDAO.save(user);
+        return "redirect:/user";
     }
 }

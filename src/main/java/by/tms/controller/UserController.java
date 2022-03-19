@@ -21,6 +21,8 @@ public class UserController {
     @GetMapping()
     public String showAllUsers(Model model) {
 //        model.addAttribute("users", userDAOInMemory.getAll());
+
+        //init test data users
         if (userDAOHibernate.findById(1) == null) {
 
             User user1 = new User();

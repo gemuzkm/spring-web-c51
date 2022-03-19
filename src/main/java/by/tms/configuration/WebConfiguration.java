@@ -27,7 +27,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("by.tms")
-@EnableWebMvc // чтобы работала валидация
+@EnableWebMvc
 public class WebConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     @Autowired

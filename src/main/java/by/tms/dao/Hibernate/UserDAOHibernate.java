@@ -33,14 +33,14 @@ public class UserDAOHibernate {
     public void remove(User user) {
         Session session = sessionFactory.openSession();
         session.delete(user);
-        session.beginTransaction().commit();
+//        session.beginTransaction().commit();
         session.close();
     }
 
     public void update(User user) {
         Session session = sessionFactory.openSession();
         session.merge(user);
-        session.beginTransaction().commit();
+//        session.beginTransaction().commit();
         session.close();
     }
 

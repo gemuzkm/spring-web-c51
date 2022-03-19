@@ -79,7 +79,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter implements Applica
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/spring-web");
         dataSource.setUsername("root");
         dataSource.setPassword("admin");
@@ -90,7 +90,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter implements Applica
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("by.tms");
+        sessionFactory.setPackagesToScan("by.tms.entity");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

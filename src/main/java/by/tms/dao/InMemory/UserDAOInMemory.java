@@ -1,4 +1,4 @@
-package by.tms.dao;
+package by.tms.dao.InMemory;
 
 import by.tms.entity.User;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class UserDAO {
+public class UserDAOInMemory {
     private List<User> userList;
 
     {

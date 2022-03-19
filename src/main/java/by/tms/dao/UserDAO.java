@@ -36,4 +36,8 @@ public class UserDAO {
         userToBeUpdated.setPassword(updatedUser.getPassword());
         userToBeUpdated.setEmail(updatedUser.getEmail());
     }
+
+    public void delete(int id) {
+        userList.removeIf(p -> p.getId() == id);
+    }
 }

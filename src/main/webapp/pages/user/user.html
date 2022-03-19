@@ -11,5 +11,15 @@ User name: <td th:text="${user.getName()}">User Name</td> <br/>
 User password:  <td th:text="${user.getPassword()}">User Password</td> <br/>
 User e-mail: <td th:text="${user.getEmail()}">User E-mail</td>
 
+<br/>
+<!--<a th:href="@{/user/{id}/edit(id=${user.getId()})}">Edit user</a>-->
+
+<form th:method="get" th:action="@{/user/{id}/edit(id=${user.getId()})}">
+    <input type="submit" value="Edit user">
+</form>
+
+<form th:method="DELETE" th:action="@{/user/{id}(id=${user.getId()})}">
+    <input type="submit" value="Delete">
+</form>
 </body>
 </html>

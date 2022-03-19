@@ -25,8 +25,8 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableTransactionManagement
 @ComponentScan("by.tms")
+@EnableTransactionManagement
 @EnableWebMvc
 public class WebConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 

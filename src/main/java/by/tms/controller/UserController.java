@@ -36,12 +36,13 @@ public class UserController {
     }
 
     @GetMapping("/reg")
-    public String newUser(@ModelAttribute("newUser") User user) {
+    public String newUser(@ModelAttribute("user") User user) {
         return "user/reg";
     }
 
     @PostMapping("/reg")
-    public String create(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult, Model model) {
+    public String create(@ModelAttribute("user") @Valid User user,
+                         BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "user/reg";
@@ -58,7 +59,13 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("user") @ Valid User user,
+                         BindingResult bindingResult, @PathVariable("id") int id) {
+
+        if (bindingResult.hasErrors()) {
+            return "user/edit";
+        }
+
         userDAO.update(id, user);
         return "redirect:/user";
     }

@@ -16,8 +16,6 @@ import javax.validation.Valid;
 @RequestMapping("/user")
 public class UserController {
 
-
-
     private final UserDAO userDAO;
 
     @Autowired
@@ -52,4 +50,17 @@ public class UserController {
         userDAO.save(user);
         return "redirect:/user";
     }
+
+    @GetMapping("/{id}/edit")
+    public String editUser(Model model, @PathVariable("id") int id) {
+        model.addAttribute("user", userDAO.getById(id));
+        return "user/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        userDAO.update(id, user);
+        return "redirect:/user";
+    }
+
 }

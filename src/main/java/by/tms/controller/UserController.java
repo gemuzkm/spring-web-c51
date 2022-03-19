@@ -21,6 +21,27 @@ public class UserController {
     @GetMapping()
     public String showAllUsers(Model model) {
 //        model.addAttribute("users", userDAOInMemory.getAll());
+        if (userDAOHibernate.findById(1) == null) {
+
+            User user1 = new User();
+            user1.setName("user1");
+            user1.setPassword("user1");
+            user1.setEmail("user1@gmail.com");
+            userDAOHibernate.save(user1);
+
+            User user2 = new User();
+            user2.setName("user2");
+            user2.setPassword("user2");
+            user2.setEmail("user2@gmail.com");
+            userDAOHibernate.save(user2);
+
+            User user3 = new User();
+            user3.setName("user3");
+            user3.setPassword("user3");
+            user3.setEmail("user3@gmail.com");
+            userDAOHibernate.save(user3);
+        }
+
         model.addAttribute("users", userDAOHibernate.findAll());
         return "user/users";
     }

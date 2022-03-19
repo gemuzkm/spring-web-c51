@@ -107,6 +107,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter implements Applica
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
         hibernateProperties.setProperty("show_sql", "true");
+        hibernateProperties.setProperty("format_sql", "false");
         return hibernateProperties;
     }
 }

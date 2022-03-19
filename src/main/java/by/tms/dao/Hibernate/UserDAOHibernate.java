@@ -31,17 +31,17 @@ public class UserDAOHibernate {
     }
 
     public void remove(User user) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         session.delete(user);
 //        session.beginTransaction().commit();
-        session.close();
+//        session.close();
     }
 
     public void update(User user) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         session.merge(user);
 //        session.beginTransaction().commit();
-        session.close();
+//        session.close();
     }
 
     public List<User> findAllByName(String name) {

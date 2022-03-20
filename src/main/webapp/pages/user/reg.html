@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>New user</title>
+    <div th:insert="fragment/bootstrap :: cdncss"></div>
 </head>
 <body>
+<div th:insert="fragment/menu :: top"></div>
+
 <form th:method="POST" th:action="@{/user/reg}" th:object="${user}">
     <div>
         <label for="name">Name</label>

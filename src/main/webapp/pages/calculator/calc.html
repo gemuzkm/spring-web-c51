@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculator Page</title>
+    <div th:insert="fragment/bootstrap :: cdncss"></div>
 </head>
 <body>
+<div th:insert="fragment/menu :: top"></div>
 
 <form th:method="post" th:action="@{/calc}" th:object="${calcOperation}">
     <input type="text" th:field="*{value1}" id="value1" placeholder="Value 1">

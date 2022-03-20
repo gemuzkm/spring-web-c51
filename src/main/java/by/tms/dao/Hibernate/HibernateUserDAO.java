@@ -1,6 +1,5 @@
 package by.tms.dao.Hibernate;
 
-import by.tms.dao.UserDAO;
 import by.tms.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,19 +12,19 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class HibernateUserDAO implements UserDAO<User> {
+public class HibernateUserDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Override
+
     public void save(User user) {
         Session session = sessionFactory.openSession();
         session.save(user);
         session.close();
     }
 
-    @Override
+
     public User findById(long id) {
         Session session = sessionFactory.openSession();
         User user = session.get(User.class, id);
@@ -33,7 +32,7 @@ public class HibernateUserDAO implements UserDAO<User> {
         return user;
     }
 
-    @Override
+
     public void remove(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(user);
@@ -41,7 +40,7 @@ public class HibernateUserDAO implements UserDAO<User> {
 //        session.close();
     }
 
-    @Override
+
     public void update(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.merge(user);
@@ -49,7 +48,7 @@ public class HibernateUserDAO implements UserDAO<User> {
 //        session.close();
     }
 
-    @Override
+
     public List<User> findAllByName(String name) {
         Session session = sessionFactory.openSession();
         Query<User> query = session.createQuery("from User where name = :name", User.class);
@@ -59,7 +58,7 @@ public class HibernateUserDAO implements UserDAO<User> {
         return resultList;
     }
 
-    @Override
+
     public List<User> findAll(){
         Session session = sessionFactory.openSession();
         Query<User> from_user = session.createQuery("from User", User.class);
@@ -68,7 +67,7 @@ public class HibernateUserDAO implements UserDAO<User> {
         return resultList;
     }
 
-    @Override
+
     public User findByUsername(String username){
         Session session = sessionFactory.openSession();
         Query<User> query = session.createQuery("from User where name = :un", User.class);

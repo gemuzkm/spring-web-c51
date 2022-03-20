@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class UserDAOInMemory {
+public class InMemoryUserDAO {
     private List<User> userList;
 
     {

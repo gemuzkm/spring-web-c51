@@ -1,7 +1,6 @@
 package by.tms.controller;
 
-import by.tms.dao.Hibernate.UserDAOHibernate;
-import by.tms.dao.InMemory.UserDAOInMemory;
+import by.tms.dao.Hibernate.HibernateUserDAO;
 import by.tms.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,7 @@ import javax.validation.Valid;
 public class UserController {
 
     @Autowired
-    private  UserDAOHibernate userDAOHibernate;
+    private HibernateUserDAO hibernateUserDAO;
 
     @GetMapping()
     public String showAllUsers(Model model) {
@@ -44,14 +43,14 @@ public class UserController {
 //            userDAOHibernate.save(user3);
 //        }
 
-        model.addAttribute("users", userDAOHibernate.findAll());
+        model.addAttribute("users", hibernateUserDAO.findAll());
         return "user/users";
     }
 
     @GetMapping("/{id}")
     public String showById(@PathVariable("id") long id, Model model) {
 //        model.addAttribute("user", userDAOInMemory.getById(id));
-        model.addAttribute("user", userDAOHibernate.findById(id));
+        model.addAttribute("user", hibernateUserDAO.findById(id));
         return "user/user";
     }
 
@@ -69,14 +68,14 @@ public class UserController {
         }
 
 //        userDAOInMemory.save(user);
-        userDAOHibernate.save(user);
+        hibernateUserDAO.save(user);
         return "redirect:/user";
     }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id) {
  //       model.addAttribute("user", userDAOInMemory.getById(id));
-        model.addAttribute("user", userDAOHibernate.findById(id));
+        model.addAttribute("user", hibernateUserDAO.findById(id));
         return "user/edit";
     }
 
@@ -89,15 +88,15 @@ public class UserController {
         }
 
  //       userDAOInMemory.update(id, user);
-        userDAOHibernate.update(user);
+        hibernateUserDAO.update(user);
         return "redirect:/user";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") long id) {
 //        userDAOInMemory.delete(id);
-        User user = userDAOHibernate.findById(id);
-        userDAOHibernate.remove(user);
+        User user = hibernateUserDAO.findById(id);
+        hibernateUserDAO.remove(user);
         return "redirect:/user";
     }
 }

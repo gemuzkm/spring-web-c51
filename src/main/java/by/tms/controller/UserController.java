@@ -53,7 +53,6 @@ public class UserController {
 
     @GetMapping("/users")
     public String showAllUsers(Model model) {
-//        model.addAttribute("users", userDAOInMemory.getAll());
         model.addAttribute("users", hibernateUserDAO.findAll());
         return "user/users";
     }
@@ -66,7 +65,6 @@ public class UserController {
 
     @GetMapping("user/{id}")
     public String showById(@PathVariable("id") long id, Model model) {
-//        model.addAttribute("user", userDAOInMemory.getById(id));
         model.addAttribute("user", hibernateUserDAO.findById(id));
         return "user/user";
     }
@@ -84,7 +82,6 @@ public class UserController {
             return "user/reg";
         }
 
-//        userDAOInMemory.save(user);
         hibernateUserDAO.save(user);
         return "redirect:/";
     }
@@ -112,7 +109,6 @@ public class UserController {
 
     @GetMapping("user/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id) {
-        //       model.addAttribute("user", userDAOInMemory.getById(id));
         model.addAttribute("user", hibernateUserDAO.findById(id));
         return "user/edit";
     }
@@ -127,15 +123,12 @@ public class UserController {
         }
 
         session.setAttribute("user", user);
-
-        //       userDAOInMemory.update(id, user);
         hibernateUserDAO.update(user);
         return "user/index";
     }
 
     @DeleteMapping("user/{id}")
     public String delete(@PathVariable("id") long id, HttpSession session) {
-//        userDAOInMemory.delete(id);
         User user = hibernateUserDAO.findById(id);
         hibernateUserDAO.remove(user);
         session.invalidate();

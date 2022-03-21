@@ -2,6 +2,7 @@ package by.tms.controller;
 
 import by.tms.dao.Hibernate.HibernateUserDAO;
 import by.tms.entity.User;
+import by.tms.entity.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -90,16 +91,23 @@ public class UserController {
     }
 
     @PostMapping("user/login")
-    public String login(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
-                        HttpSession httpSession, Model model) {
+    public String login(@ModelAttribute("user") @Valid UserDTO userDTO, BindingResult bindingResult,
+                        HttpSession session, Model model) {
 
-        if (bindingResult.hasErrors())  {
+        if (bindingResult.hasErrors()) {
             return "user/login";
-        } else if (hibernateUserDAO.findById(user.getId()) == null) {
-            model.addAttribute("msgerror", "user not found");
+        } else if (hibernateUserDAO.findAllByName(userDTO.getName()).size() == 0) {
+            model.addAttribute("msgerror", "invalid user/login");
             return "user/login";
         } else {
+            User user = hibernateUserDAO.findByUsername(userDTO.getName());
 
+            if (user.getPassword().equals(userDTO.getPassword())) {
+                session.setAttribute("user", user);
+            } else {
+                model.addAttribute("msgerror", "invalid user/login");
+                return "user/login";
+            }
         }
 
         return "user/index";
@@ -107,13 +115,13 @@ public class UserController {
 
     @GetMapping("user/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id) {
- //       model.addAttribute("user", userDAOInMemory.getById(id));
+        //       model.addAttribute("user", userDAOInMemory.getById(id));
         model.addAttribute("user", hibernateUserDAO.findById(id));
         return "user/edit";
     }
 
     @PatchMapping("user/{id}")
-    public String update(@ModelAttribute("user") @ Valid User user,
+    public String update(@ModelAttribute("user") @Valid User user,
                          BindingResult bindingResult, @PathVariable("id") long id,
                          HttpSession session) {
 
@@ -123,7 +131,7 @@ public class UserController {
 
         session.setAttribute("user", user);
 
- //       userDAOInMemory.update(id, user);
+        //       userDAOInMemory.update(id, user);
         hibernateUserDAO.update(user);
         return "user/index";
     }

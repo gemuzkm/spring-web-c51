@@ -2,9 +2,15 @@ package by.tms.entity;
 
 import by.tms.enums.EnumOperation;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Operation {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     @NotNull(message = "invalid value1")
     private Double value1;
 
@@ -14,7 +20,11 @@ public class Operation {
     @NotNull(message = "No operator is supported")
     private String operation;
 
-    private EnumOperation enumOperation;
+    @ManyToOne
+    private User user;
+
+    public Operation() {
+    }
 
     public Operation(Double value1, Double value2, String operation) {
         this.value1 = value1;
@@ -44,14 +54,6 @@ public class Operation {
 
     public void setOperation(String operation) {
         this.operation = operation;
-    }
-
-    public EnumOperation getEnumOperation() {
-        return enumOperation;
-    }
-
-    public void setEnumOperation(EnumOperation enumOperation) {
-        this.enumOperation = enumOperation;
     }
 
     @Override

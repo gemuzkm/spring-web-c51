@@ -49,6 +49,7 @@ buildNumber.properties
 .idea
 .idea/*
 .idea/**
+*.iml
 
 # Generated files
 .idea/**/contentModel.xml
@@ -111,6 +112,4 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
-
-/.idea/dataSources.xml
-/.idea/jpa-buddy.xml
+/spring-web-c51.iml

@@ -2,6 +2,7 @@ package by.tms.service;
 
 import by.tms.dao.Hibernate.HibernateHistoryDAO;
 import by.tms.dao.Hibernate.HibernateUserDAO;
+import by.tms.dao.JPA.JPAUserDAO;
 import by.tms.entity.Operation;
 import by.tms.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,11 @@ import java.util.List;
 @Component
 public class HistoryService {
 
-    @Autowired
-    HibernateHistoryDAO hibernateHistoryDAO;
+//    @Autowired
+//    HibernateUserDAO hibernateUserDAO;
 
     @Autowired
-    HibernateUserDAO hibernateUserDAO;
+    JPAUserDAO jpaUserDAO;
 
     public HistoryService() {
     }
@@ -30,6 +31,7 @@ public class HistoryService {
         operationList.add(operation);
         user.setOperationList(operationList);
 
-        hibernateUserDAO.update(user);
+//        hibernateUserDAO.update(user);
+        jpaUserDAO.update(user);
     }
 }

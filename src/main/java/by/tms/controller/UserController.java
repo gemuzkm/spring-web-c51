@@ -17,8 +17,8 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
-    @Autowired
-    private HibernateUserDAO hibernateUserDAO;
+//    @Autowired
+//    private HibernateUserDAO hibernateUserDAO;
 
     @Autowired
     JPAUserDAO jpaUserDAO;
@@ -30,26 +30,28 @@ public class UserController {
     public String index() {
 
         //init test data users
-        System.out.println(hibernateUserDAO.findById(1));
         if (jpaUserDAO.findById(1) == null) {
 
             User user1 = new User();
             user1.setName("user1");
             user1.setPassword("user1");
             user1.setEmail("user1@gmail.com");
-            hibernateUserDAO.save(user1);
+//            hibernateUserDAO.save(user1);
+            jpaUserDAO.save(user1);
 
             User user2 = new User();
             user2.setName("user2");
             user2.setPassword("user2");
             user2.setEmail("user2@gmail.com");
-            hibernateUserDAO.save(user2);
+//            hibernateUserDAO.save(user2);
+            jpaUserDAO.save(user2);
 
             User user3 = new User();
             user3.setName("user3");
             user3.setPassword("user3");
             user3.setEmail("user3@gmail.com");
-            hibernateUserDAO.save(user3);
+//            hibernateUserDAO.save(user3);
+            jpaUserDAO.save(user3);
         }
 
         return "user/index";

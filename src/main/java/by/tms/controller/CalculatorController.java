@@ -1,6 +1,6 @@
 package by.tms.controller;
 
-import by.tms.dao.Hibernate.HibernateHistoryDAO;
+import by.tms.dao.JPA.JPAHistoryDAO;
 import by.tms.entity.Operation;
 import by.tms.entity.User;
 import by.tms.service.HistoryService;
@@ -28,8 +28,11 @@ public class CalculatorController {
     @Autowired
     HistoryService historyService;
 
+//    @Autowired
+//    HibernateHistoryDAO hibernateHistoryDAO;
+
     @Autowired
-    HibernateHistoryDAO hibernateHistoryDAO;
+    JPAHistoryDAO jpaHistoryDAO;
 
     @GetMapping
     public String calc(@ModelAttribute("calcOperation") Operation operation) {
@@ -64,7 +67,8 @@ public class CalculatorController {
         if (session.getAttribute("user") == null) {
             return "redirect:/";
         } else {
-            List<Operation> operationList = hibernateHistoryDAO.findAllByUser((User) session.getAttribute("user"));
+//            List<Operation> operationList = hibernateHistoryDAO.findAllByUser((User) session.getAttribute("user"));
+            List<Operation> operationList = jpaHistoryDAO.findAllByUser((User) session.getAttribute("user"));
             model.addAttribute("userHistory", operationList);
             return "calculator/history";
         }

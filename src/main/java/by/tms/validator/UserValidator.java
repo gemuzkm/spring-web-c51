@@ -12,12 +12,10 @@ public class UserValidator {
     @Autowired
     private HibernateUserDAO hibernateUserDAO;
 
-    public UserValidator() {
+    // not used
+    public boolean isValid(User user) {
+        return true;
     }
-
-//    public boolean isValid(User user) {
-//        return true;
-//    }
 
     public boolean isValid(UserDTO userDTO) {
         return isValidUserName(userDTO) && isValidUserPassword(userDTO);

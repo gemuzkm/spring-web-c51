@@ -30,14 +30,6 @@ public class User {
 	@Email(message = "not valid email")
 	private String email;
 
-	public List<Operation> getOperationList() {
-		return operationList;
-	}
-
-	public void setOperationList(List<Operation> operationList) {
-		this.operationList = operationList;
-	}
-
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Operation> operationList;
 
@@ -81,6 +73,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Operation> getOperationList() {
+		return operationList;
+	}
+
+	public void setOperationList(List<Operation> operationList) {
+		this.operationList = operationList;
 	}
 
 	@Override

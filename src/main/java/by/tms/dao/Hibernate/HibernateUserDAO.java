@@ -66,7 +66,6 @@ public class HibernateUserDAO {
         return resultList;
     }
 
-
     public User findByUsername(String username){
         Session session = sessionFactory.openSession();
         Query<User> query = session.createQuery("from User where name = :un", User.class);

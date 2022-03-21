@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>History Operation</title>
@@ -8,7 +8,13 @@
 <body>
 <div th:insert="fragment/menu :: top"></div>
 
+<div th:if="${#lists.isEmpty(userHistory)}">
+    History is empty
+</div>
 
+<div th:each="operation : ${userHistory}">
+    <td th:text="${operation.value1} + ' ' + ${operation.operation} + ' ' + ${operation.value2}">operation</td>
+</div>
 
 </body>
 </html>

@@ -84,6 +84,27 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("user/login")
+    public String showLoginPage(@ModelAttribute("user") User user) {
+        return "user/login";
+    }
+
+    @PostMapping("user/login")
+    public String login(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
+                        HttpSession httpSession, Model model) {
+
+        if (bindingResult.hasErrors())  {
+            return "user/login";
+        } else if (hibernateUserDAO.findById(user.getId()) == null) {
+            model.addAttribute("msgerror", "user not found");
+            return "user/login";
+        } else {
+
+        }
+
+        return "user/index";
+    }
+
     @GetMapping("user/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id) {
  //       model.addAttribute("user", userDAOInMemory.getById(id));

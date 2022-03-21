@@ -32,6 +32,4 @@ public class HistoryService {
 
         hibernateUserDAO.update(user);
     }
-
-
 }

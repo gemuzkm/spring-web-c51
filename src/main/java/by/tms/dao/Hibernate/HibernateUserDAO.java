@@ -23,14 +23,12 @@ public class HibernateUserDAO {
         session.close();
     }
 
-
     public User findById(long id) {
         Session session = sessionFactory.openSession();
         User user = session.get(User.class, id);
         session.close();
         return user;
     }
-
 
     public void remove(User user) {
         Session session = sessionFactory.getCurrentSession();
@@ -39,14 +37,12 @@ public class HibernateUserDAO {
 //        session.close();
     }
 
-
     public void update(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.merge(user);
 //        session.beginTransaction().commit();
 //        session.close();
     }
-
 
     public List<User> findAllByName(String name) {
         Session session = sessionFactory.openSession();
@@ -56,7 +52,6 @@ public class HibernateUserDAO {
         session.close();
         return resultList;
     }
-
 
     public List<User> findAll(){
         Session session = sessionFactory.openSession();

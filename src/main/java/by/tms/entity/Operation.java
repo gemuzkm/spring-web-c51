@@ -1,7 +1,5 @@
 package by.tms.entity;
 
-import by.tms.enums.EnumOperation;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 

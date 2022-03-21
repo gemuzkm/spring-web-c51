@@ -3,6 +3,7 @@ package by.tms.controller;
 import by.tms.dao.Hibernate.HibernateUserDAO;
 import by.tms.entity.User;
 import by.tms.entity.UserDTO;
+import by.tms.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,9 @@ public class UserController {
 
     @Autowired
     private HibernateUserDAO hibernateUserDAO;
+
+    @Autowired
+    private UserValidator userValidator;
 
     @GetMapping("/")
     public String index() {
@@ -96,18 +100,11 @@ public class UserController {
 
         if (bindingResult.hasErrors()) {
             return "user/login";
-        } else if (hibernateUserDAO.findAllByName(userDTO.getName()).size() == 0) {
+        } else if (userValidator.isValid(userDTO))  {
+            session.setAttribute("user", hibernateUserDAO.findByUsername(userDTO.getName()));
+        } else  {
             model.addAttribute("msgerror", "invalid user/login");
             return "user/login";
-        } else {
-            User user = hibernateUserDAO.findByUsername(userDTO.getName());
-
-            if (user.getPassword().equals(userDTO.getPassword())) {
-                session.setAttribute("user", user);
-            } else {
-                model.addAttribute("msgerror", "invalid user/login");
-                return "user/login";
-            }
         }
 
         return "user/index";

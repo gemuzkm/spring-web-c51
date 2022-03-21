@@ -17,7 +17,6 @@ public class HibernateUserDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-
     public void save(User user) {
         Session session = sessionFactory.openSession();
         session.save(user);

@@ -7,6 +7,11 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+@NamedQueries({
+		@NamedQuery(name = "User.findAll", query = "select u from User u"),
+		@NamedQuery(name = "User.findAllByName", query = "select u from User u where u.name = :name"),
+		@NamedQuery(name = "User.findByUsername", query =  "select u from User u where u.name = :name" )
+})
 @Entity
 @Table(name="users")
 public class User {

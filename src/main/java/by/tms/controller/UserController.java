@@ -1,6 +1,7 @@
 package by.tms.controller;
 
 import by.tms.dao.Hibernate.HibernateUserDAO;
+import by.tms.dao.JPA.JPAUserDAO;
 import by.tms.entity.User;
 import by.tms.entity.UserDTO;
 import by.tms.validator.UserValidator;
@@ -20,6 +21,9 @@ public class UserController {
     private HibernateUserDAO hibernateUserDAO;
 
     @Autowired
+    JPAUserDAO jpaUserDAO;
+
+    @Autowired
     private UserValidator userValidator;
 
     @GetMapping("/")
@@ -27,7 +31,7 @@ public class UserController {
 
         //init test data users
         System.out.println(hibernateUserDAO.findById(1));
-        if (hibernateUserDAO.findById(1) == null) {
+        if (jpaUserDAO.findById(1) == null) {
 
             User user1 = new User();
             user1.setName("user1");
@@ -53,7 +57,8 @@ public class UserController {
 
     @GetMapping("/users")
     public String showAllUsers(Model model) {
-        model.addAttribute("users", hibernateUserDAO.findAll());
+//        model.addAttribute("users", hibernateUserDAO.findAll());
+        model.addAttribute("users", jpaUserDAO.findAll());
         return "user/users";
     }
 
@@ -65,7 +70,8 @@ public class UserController {
 
     @GetMapping("user/{id}")
     public String showById(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", hibernateUserDAO.findById(id));
+//        model.addAttribute("user", hibernateUserDAO.findById(id));
+        model.addAttribute("user", jpaUserDAO.findById(id));
         return "user/user";
     }
 
@@ -82,7 +88,8 @@ public class UserController {
             return "user/reg";
         }
 
-        hibernateUserDAO.save(user);
+//        hibernateUserDAO.save(user);
+        jpaUserDAO.save(user);
         return "redirect:/";
     }
 
@@ -98,7 +105,8 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "user/login";
         } else if (userValidator.isValid(userDTO))  {
-            session.setAttribute("user", hibernateUserDAO.findByUsername(userDTO.getName()));
+//            session.setAttribute("user", hibernateUserDAO.findByUsername(userDTO.getName()));
+            session.setAttribute("user", jpaUserDAO.findByUsername(userDTO.getName()));
         } else  {
             model.addAttribute("msgerror", "invalid user/login");
             return "user/login";
@@ -109,7 +117,8 @@ public class UserController {
 
     @GetMapping("user/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id) {
-        model.addAttribute("user", hibernateUserDAO.findById(id));
+//        model.addAttribute("user", hibernateUserDAO.findById(id));
+        model.addAttribute("user", jpaUserDAO.findById(id));
         return "user/edit";
     }
 
@@ -123,14 +132,17 @@ public class UserController {
         }
 
         session.setAttribute("user", user);
-        hibernateUserDAO.update(user);
+//        hibernateUserDAO.update(user);
+        jpaUserDAO.update(user);
         return "user/index";
     }
 
     @DeleteMapping("user/{id}")
     public String delete(@PathVariable("id") long id, HttpSession session) {
-        User user = hibernateUserDAO.findById(id);
-        hibernateUserDAO.remove(user);
+//        User user = hibernateUserDAO.findById(id);
+        User user = jpaUserDAO.findById(id);
+//        hibernateUserDAO.remove(user);
+        jpaUserDAO.remove(user);
         session.invalidate();
         return "user/index";
     }

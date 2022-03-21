@@ -2,6 +2,7 @@ package by.tms.configuration;
 
 import by.tms.interceptor.TestInterceptor;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +12,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -26,14 +29,22 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan("by.tms")
-@EnableTransactionManagement
 @EnableWebMvc
+@EnableTransactionManagement
 public class WebConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
     @Autowired
     private TestInterceptor testInterceptor;
 
     private ApplicationContext applicationContext;
+
+//	@Bean
+//	public ViewResolver viewResolver(){
+//		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+//		viewResolver.setSuffix(".jsp");
+//		viewResolver.setPrefix("/pages/");
+//		return viewResolver;
+//	}
 
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
@@ -86,20 +97,37 @@ public class WebConfiguration extends WebMvcConfigurerAdapter implements Applica
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("by.tms.entity");
-        sessionFactory.setHibernateProperties(hibernateProperties());
-        return sessionFactory;
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(){
+        LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        localContainerEntityManagerFactoryBean.setJpaProperties(hibernateProperties());
+        localContainerEntityManagerFactoryBean.setDataSource(dataSource());
+        localContainerEntityManagerFactoryBean.setPersistenceProvider(new HibernatePersistenceProvider());
+        localContainerEntityManagerFactoryBean.setPackagesToScan("by.tms.entity");
+        return localContainerEntityManagerFactoryBean;
     }
 
     @Bean
-    public PlatformTransactionManager hibernateTransactionManager() {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(sessionFactory().getObject());
-        return transactionManager;
+    public PlatformTransactionManager platformTransactionManager(){
+        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+        jpaTransactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
+        return jpaTransactionManager;
     }
+
+//    @Bean
+//    public LocalSessionFactoryBean sessionFactory() {
+//        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+//        sessionFactory.setDataSource(dataSource());
+//        sessionFactory.setPackagesToScan("by.tms.entity");
+//        sessionFactory.setHibernateProperties(hibernateProperties());
+//        return sessionFactory;
+//    }
+//
+//    @Bean
+//    public PlatformTransactionManager hibernateTransactionManager() {
+//        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+//        transactionManager.setSessionFactory(sessionFactory().getObject());
+//        return transactionManager;
+//    }
 
     private Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();

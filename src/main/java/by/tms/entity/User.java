@@ -35,7 +35,7 @@ public class User {
 	@Email(message = "not valid email")
 	private String email;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Operation> operationList;
 
 	public User() {
@@ -85,6 +85,10 @@ public class User {
 	}
 
 	public void setOperationList(List<Operation> operationList) {
+		//fix - bi-directional - not owner
+		if (operationList != null) {
+			operationList.forEach(o -> o.setUser(this));
+		}
 		this.operationList = operationList;
 	}
 

@@ -19,6 +19,13 @@ public class Operation {
     @NotNull(message = "No operator is supported")
     private String operation;
 
+    @ManyToOne(cascade = {
+            CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,
+            CascadeType.REFRESH
+    })
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Operation() {
     }
 
@@ -50,6 +57,14 @@ public class Operation {
 
     public void setOperation(String operation) {
         this.operation = operation;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

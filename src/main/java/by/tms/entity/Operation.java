@@ -18,9 +18,6 @@ public class Operation {
     @NotNull(message = "No operator is supported")
     private String operation;
 
-    @ManyToOne
-    private User user;
-
     public Operation() {
     }
 

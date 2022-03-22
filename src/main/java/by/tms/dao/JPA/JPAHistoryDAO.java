@@ -18,7 +18,6 @@ public class JPAHistoryDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional(readOnly = true)
     public Operation findById(long id) {
         Operation operation = entityManager.find(Operation.class, id);
         entityManager.close();
@@ -28,5 +27,21 @@ public class JPAHistoryDAO {
     public List<Operation> findAllByUser(User user) {
         List<Operation> operationList = user.getOperationList();
         return operationList;
+    }
+
+    public void save(Operation operation) {
+        entityManager.persist(operation);
+        entityManager.close();
+    }
+
+
+    public void remove(Operation operation) {
+        entityManager.remove(operation);
+        entityManager.close();
+    }
+
+    public void update(Operation operation) {
+        entityManager.merge(operation);
+        entityManager.close();
     }
 }

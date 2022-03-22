@@ -2,6 +2,7 @@ package by.tms.service;
 
 import by.tms.dao.Hibernate.HibernateHistoryDAO;
 import by.tms.dao.Hibernate.HibernateUserDAO;
+import by.tms.dao.JPA.JPAHistoryDAO;
 import by.tms.dao.JPA.JPAUserDAO;
 import by.tms.entity.Operation;
 import by.tms.entity.User;
@@ -22,6 +23,9 @@ public class HistoryService {
     @Autowired
     JPAUserDAO jpaUserDAO;
 
+    @Autowired
+    JPAHistoryDAO jpaHistoryDAO;
+
     public HistoryService() {
     }
 
@@ -31,7 +35,6 @@ public class HistoryService {
         operationList.add(operation);
         user.setOperationList(operationList);
 
-//        hibernateUserDAO.update(user);
         jpaUserDAO.update(user);
     }
 }

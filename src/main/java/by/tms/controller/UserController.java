@@ -1,9 +1,8 @@
 package by.tms.controller;
 
-import by.tms.dao.Hibernate.HibernateUserDAO;
 import by.tms.dao.JPA.JPAUserDAO;
 import by.tms.entity.User;
-import by.tms.entity.UserDTO;
+import by.tms.dto.UserDTO;
 import by.tms.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,9 +1,7 @@
-package by.tms.dao.JPA;
+package by.tms.dao.jpa;
 
 import by.tms.entity.Operation;
 import by.tms.entity.User;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

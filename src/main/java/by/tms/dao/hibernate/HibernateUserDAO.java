@@ -1,4 +1,4 @@
-package by.tms.dao.Hibernate;
+package by.tms.dao.hibernate;
 
 import by.tms.entity.User;
 import org.hibernate.Session;

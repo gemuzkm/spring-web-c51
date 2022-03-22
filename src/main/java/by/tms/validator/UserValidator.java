@@ -1,6 +1,6 @@
 package by.tms.validator;
 
-import by.tms.dao.Hibernate.HibernateUserDAO;
+import by.tms.dao.hibernate.HibernateUserDAO;
 import by.tms.entity.User;
 import by.tms.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;

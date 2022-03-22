@@ -1,6 +1,6 @@
 package by.tms.controller;
 
-import by.tms.dao.JPA.JPAHistoryDAO;
+import by.tms.dao.jpa.JPAHistoryDAO;
 import by.tms.entity.Operation;
 import by.tms.entity.User;
 import by.tms.service.HistoryService;

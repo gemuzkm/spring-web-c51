@@ -1,4 +1,4 @@
-package by.tms.dao.InMemory;
+package by.tms.dao.inMemory;
 
 import by.tms.entity.User;
 import org.springframework.stereotype.Component;

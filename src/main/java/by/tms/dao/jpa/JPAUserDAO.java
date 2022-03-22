@@ -1,4 +1,4 @@
-package by.tms.dao.JPA;
+package by.tms.dao.jpa;
 
 import by.tms.entity.User;
 import org.springframework.stereotype.Repository;

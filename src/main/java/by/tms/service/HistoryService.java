@@ -1,9 +1,7 @@
 package by.tms.service;
 
-import by.tms.dao.Hibernate.HibernateHistoryDAO;
-import by.tms.dao.Hibernate.HibernateUserDAO;
-import by.tms.dao.JPA.JPAHistoryDAO;
-import by.tms.dao.JPA.JPAUserDAO;
+import by.tms.dao.jpa.JPAHistoryDAO;
+import by.tms.dao.jpa.JPAUserDAO;
 import by.tms.entity.Operation;
 import by.tms.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;

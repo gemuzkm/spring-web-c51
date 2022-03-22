@@ -1,6 +1,6 @@
 package by.tms.controller;
 
-import by.tms.dao.JPA.JPAUserDAO;
+import by.tms.dao.jpa.JPAUserDAO;
 import by.tms.entity.User;
 import by.tms.dto.UserDTO;
 import by.tms.validator.UserValidator;

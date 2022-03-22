@@ -1,4 +1,4 @@
-package by.tms.entity;
+package by.tms.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

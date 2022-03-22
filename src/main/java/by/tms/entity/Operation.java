@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name="history")
 public class Operation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
